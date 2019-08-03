@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Ubs;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Storage;
 use League\Csv\Reader;
 
@@ -22,5 +23,10 @@ class UbsService
         }
 
         return true;
+    }
+
+    public function getAll(): ?Collection
+    {
+            return Ubs::all();
     }
 }
