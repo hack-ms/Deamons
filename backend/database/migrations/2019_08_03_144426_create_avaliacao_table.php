@@ -24,8 +24,6 @@ class CreateAvaliacaoTable extends Migration
             $table->boolean('dificuldade_acesso');
             $table->boolean('avaliacao_atendimento');
 
-            #WIP Definir campos da pesquisa
-
             $table->foreign('ubs_id', 'fk_ubs')->references('gid')->on('ubs');
         });
     }
