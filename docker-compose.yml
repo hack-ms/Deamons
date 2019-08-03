@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  web:
+    image: teste1
+    container_name:  php
+    volumes:
+      - ./hackms:/var/www/html
+    ports:
+      - 8000:8000
+
+  mysqlsrv:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: "iohan"
+      MYSQL_DATABASE: "hackms"
+    ports:
+      - "3306:3306"
+    volumes:
+      - /home:/var/lib/mysql
+    networks:
+      - mysql-compose-network
+
+    adminer:
+      image: adminer
+      ports:
+        - 8080:8080
+      networks:
+        - mysql-compose-network
