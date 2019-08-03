@@ -17,6 +17,12 @@ class CreateAvaliacaoTable extends Migration
             $table->bigInteger('id')->primary();
             $table->bigInteger('ubs_id');
             $table->text('observacao');
+            $table->float('tempo_atendimento');
+            $table->boolean('foi_atendido');
+            $table->boolean('houve_superlotacao');
+            $table->boolean('faltou_cuidado_profissional');
+            $table->boolean('dificuldade_acesso');
+            $table->boolean('avaliacao_atendimento');
 
             #WIP Definir campos da pesquisa
 

@@ -1,5 +1,7 @@
 <?php
 
-Route::get('/', function () {
-    return response()->json(['message' => 'API dos Daemons', 'status' => 'Online']);
+Route::group(array('prefix' => 'avaliacao'), function()
+{
+    Route::get('/', 'AvaliacaoController@get');
+    Route::post('/', 'AvaliacaoController@post');
 });
