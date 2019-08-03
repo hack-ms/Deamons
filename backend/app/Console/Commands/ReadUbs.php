@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Services\UbsService;
 use Illuminate\Console\Command;
 
 class ReadUbs extends Command
@@ -37,6 +38,7 @@ class ReadUbs extends Command
      */
     public function handle()
     {
-        //
+        $ubsService = new UbsService();
+        $ubsService->importCsvFile();
     }
 }
