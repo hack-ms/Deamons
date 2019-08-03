@@ -5,6 +5,9 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Services\UbsService;
+use App\Ubs;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Http\Request;
 use App\Exceptions\FalhaObterException;
 use Illuminate\Http\Response;
 
@@ -17,7 +20,7 @@ class UbsController extends Controller
         $this->ubsService = new UbsService();
     }
 
-    public function get()
+    public function get(): ?Collection
     {
         try {
             return $this->ubsService->getAll();
