@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Ubs extends Model
 {
+    protected $primaryKey = 'gid';
+    protected $table = 'ubs';
     protected $fillable = [
         'gid',
         'co_cnes',
@@ -20,6 +22,5 @@ class Ubs extends Model
         'uf',
         'cidade'
     ];
-
     public $timestamps = false;
 }
