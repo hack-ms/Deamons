@@ -19,9 +19,8 @@ class UbsService
         $csv->setHeaderOffset(0);
         $cabecalho = $csv->getHeader();
         foreach($csv->getRecords() as $linhas) {
-            Ubs::create(array_combine($cabecalho, $linhas));
+            Ubs::create(array_combine($cabecalho, $linhas)) ;
         }
-
         return true;
     }
 
