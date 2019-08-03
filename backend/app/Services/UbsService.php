@@ -8,13 +8,19 @@ use League\Csv\Reader;
 
 class UbsService
 {
-    public function lerUbsDoCsv()
+    public function importCsvFile(): bool
     {
-        $csv = Reader::createFromPath(Storage::get('ubs.csv'), 'r');
+        $file = Storage::get('ubs.csv');
+        if (empty($file)) {
+            return false;
+        }
+        $csv = Reader::createFromString($file);
         $csv->setHeaderOffset(0);
         $cabecalho = $csv->getHeader();
         foreach($csv->getRecords() as $linhas) {
-            Ubs::created(array_combine($cabecalho, $linhas));
+            Ubs::create(array_combine($cabecalho, $linhas));
         }
+
+        return true;
     }
 }
