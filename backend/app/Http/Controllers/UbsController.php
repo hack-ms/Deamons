@@ -20,11 +20,11 @@ class UbsController extends Controller
         $this->ubsService = new UbsService();
     }
 
-    public function get(): ?Collection
+    public function get(Request $request): ?Collection
     {
         try {
-            return $this->ubsService->getAll();
-        } catch (FalhaObterException $exception) {
+            return $this->ubsService->getValuesFilters($request->all());
+        } catch (\Exception $exception) {
             return response()->json(['mensagem' => $exception->getMessage()], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
