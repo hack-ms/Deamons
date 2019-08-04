@@ -38,6 +38,10 @@ body {
   color: $text;
   height: 100vh;
 }
+.container {
+  max-width: 60rem;
+  margin: 0 auto;
+}
 
 .fade-enter-active, .fade-leave-active {
   transition: opacity .2s ease;

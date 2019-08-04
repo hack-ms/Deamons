@@ -1,50 +1,52 @@
 <template>
   <div class="rating">
-    <h1 class="rating__title">
-      Sua avalição
-    </h1>
-    <base-input
-      label="Quando foi sua visita?"
-      placeholder="00/00/00"
-    />
-    <base-input
-      label="Você recebeu atendimento?"
-      placeholder="Escolha uma opção"
-    />
-    <base-input
-      label="Quanto tempo você esperou até ser atendido?"
-      placeholder="Escolha uma opção"
-    />
-    <base-input
-      label="Houve falta de material?"
-      placeholder="Escolha uma opção"
-    />
-    <base-input
-      label="Havia superlotação na espera?"
-      placeholder="Escolha uma opção"
-    />
-    <base-input
-      label="Você teve dificuldade no acesso?"
-      placeholder="Escolha uma opção"
-    />
-    <base-input
-      label="Avalie o atendimento"
-      placeholder="Escolha uma opção"
-    />
-    <base-button
-      type="primary"
-      block
-      @click="enviar"
-    >
-      Enviar avalição
-    </base-button>
-    <base-button
-      type="outline"
-      block
-      @click="voltar"
-    >
-      Voltar
-    </base-button>
+    <div class="container">
+      <h1 class="rating__title">
+        Sua avalição
+      </h1>
+      <base-input
+        label="Quando foi sua visita?"
+        placeholder="00/00/00"
+      />
+      <base-input
+        label="Você recebeu atendimento?"
+        placeholder="Escolha uma opção"
+      />
+      <base-input
+        label="Quanto tempo você esperou até ser atendido?"
+        placeholder="Escolha uma opção"
+      />
+      <base-input
+        label="Houve falta de material?"
+        placeholder="Escolha uma opção"
+      />
+      <base-input
+        label="Havia superlotação na espera?"
+        placeholder="Escolha uma opção"
+      />
+      <base-input
+        label="Você teve dificuldade no acesso?"
+        placeholder="Escolha uma opção"
+      />
+      <base-input
+        label="Avalie o atendimento"
+        placeholder="Escolha uma opção"
+      />
+      <base-button
+        type="primary"
+        block
+        @click="enviar"
+      >
+        Enviar avalição
+      </base-button>
+      <base-button
+        type="outline"
+        block
+        @click="voltar"
+      >
+        Voltar
+      </base-button>
+    </div>
   </div>
 </template>
 

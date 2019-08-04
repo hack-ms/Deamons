@@ -1,6 +1,9 @@
 <template>
   <div class="conclusion">
-    <div style="width: 100%;">
+    <div
+      class="container"
+      style="width: 100%;"
+    >
       <h1 class="conclusion__title">
         Obrigado!
       </h1>

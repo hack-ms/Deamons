@@ -2,6 +2,7 @@
   <div class="details">
     <div
       v-if="ubs"
+      class="container"
       style="display: flex; flex-direction: column; height: 100%"
     >
       <header class="details__header">

@@ -1,15 +1,17 @@
 <template>
   <div class="result">
-    <h1 class="result__title">
-      Identificação
-    </h1>
-    <div
-      v-for="item in listUbs"
-      :key="item.co_cnes"
-      class="result__item"
-      @click="showDetails(item.co_cnes)"
-    >
-      <header-und :und="item" />
+    <div class="container">
+      <h1 class="result__title">
+        Identificação
+      </h1>
+      <div
+        v-for="item in listUbs"
+        :key="item.co_cnes"
+        class="result__item"
+        @click="showDetails(item.co_cnes)"
+      >
+        <header-und :und="item" />
+      </div>
     </div>
   </div>
 </template>

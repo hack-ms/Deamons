@@ -1,31 +1,33 @@
 <template>
   <div class="home">
-    <div class="intro">
-      <img
-        class="intro__logo"
-        alt="Vue logo"
-        src="../assets/logo.png"
-      >
-      <h1 class="intro__title">
-        Compartilhe sua experiência sobre a saúde básica
-      </h1>
-    </div>
-    <div class="main-actions">
-      <input-action
-        class-icon="fa fa-fw fa-search"
-        :class-icon-button="actionIcon"
-        placeholder="Busque uma unidade"
-        style="margin-bottom: 1.6rem;"
-        :value="searchText"
-        @click="search"
-        @input="setSearchText"
-      />
-      <base-button
-        block
-        class-icon="fa fa-fw fa-map-marker"
-      >
-        Quero me localizar agora
-      </base-button>
+    <div class="container">
+      <div class="intro">
+        <img
+          class="intro__logo"
+          alt="Vue logo"
+          src="../assets/logo.png"
+        >
+        <h1 class="intro__title">
+          Compartilhe sua experiência sobre a saúde básica
+        </h1>
+      </div>
+      <div class="main-actions">
+        <input-action
+          class-icon="fa fa-fw fa-search"
+          :class-icon-button="actionIcon"
+          placeholder="Busque uma unidade"
+          style="margin-bottom: 1.6rem;"
+          :value="searchText"
+          @click="search"
+          @input="setSearchText"
+        />
+        <base-button
+          block
+          class-icon="fa fa-fw fa-map-marker"
+        >
+          Quero me localizar agora
+        </base-button>
+      </div>
     </div>
   </div>
 </template>
