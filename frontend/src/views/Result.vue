@@ -4,67 +4,34 @@
       Identificação
     </h1>
     <div
-      v-for="item in list"
+      v-for="item in listUbs"
       :key="item.co_cnes"
       class="result__item"
+      @click="showDetails(item.co_cnes)"
     >
-      <h3 class="result__name">
-        {{ item.no_fantasia }}
-      </h3>
-      <div class="result__info">
-        <span class="result__icon fa fa-map-marker" />
-        <span>
-          {{ item.no_logradouro }},
-          {{ item.nu_endereco }},
-          {{ item.no_bairro }}
-        </span>
-      </div>
-      <div class="result__info">
-        <span class="result__icon fa fa-map-marker" />
-        <span>
-          {{ item.cidade }} - {{ item.uf }}
-        </span>
-      </div>
+      <header-und :und="item" />
     </div>
   </div>
 </template>
 
 <script>
+import { mapState, mapMutations } from 'vuex';
+import HeaderUnd from '@/components/HeaderUnd.vue';
+
 export default {
   name: 'Result',
-  data() {
-    return {
-      list: [
-        {
-          gid: 1,
-          co_cnes: 2735180,
-          lat: '-23.7792527675622',
-          long: '-52.3512911796555',
-          no_fantasia: 'POSTO DE SAUDE DE FIGUEIRA DO OESTE',
-          no_logradouro: 'AVENIDA PIQUIRI',
-          nu_endereco: 'S/N',
-          no_bairro: 'DISTRITO',
-          nu_telefone: '(44)3533-1180',
-          co_cep: '87270000',
-          uf: 'PR',
-          cidade: 'Engenheiro Beltrão',
-        },
-        {
-          gid: 1,
-          co_cnes: 424233,
-          lat: '-23.7792527675622',
-          long: '-52.3512911796555',
-          no_fantasia: 'AERO RANCHO',
-          no_logradouro: 'AVENIDA PIQUIRI',
-          nu_endereco: '280',
-          no_bairro: 'DISTRITO',
-          nu_telefone: '(44)3533-1180',
-          co_cep: '87270000',
-          uf: 'MS',
-          cidade: 'Campo Grande',
-        },
-      ],
-    };
+  components: {
+    HeaderUnd,
+  },
+  computed: {
+    ...mapState(['listUbs']),
+  },
+  methods: {
+    ...mapMutations(['setUbsSelected']),
+    showDetails(ubsId) {
+      this.setUbsSelected(ubsId);
+      this.$router.push({ name: 'details' });
+    },
   },
 };
 </script>
@@ -72,6 +39,7 @@ export default {
 <style lang="scss" scoped>
 .result {
   height: 100vh;
+  overflow: auto;
   padding: 2.4rem;
   background-color: #fff;
 
@@ -85,27 +53,12 @@ export default {
   }
 
   &__title {
-    color: $primary;
+    color: $text-light;
+    text-transform: uppercase;
     font-family: $font-head;
-    font-size: 2.4rem;
+    font-size: 2rem;
     text-align: center;
     margin: 2.4rem 0 4rem;
   }
-
-  &__name {
-    font-size: 2.2rem;
-    font-weight: 900;
-    color: $text-dark;
-    margin-bottom: 2.4rem;
-  }
-
-  &__info {
-    margin-bottom: 0.8rem;
-  }
-
-  &__icon {
-    margin-right: 0.8rem;
-  }
-
 }
 </style>

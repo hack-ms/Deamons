@@ -87,9 +87,10 @@ export default {
 
   &__title {
     padding-bottom: 6.4rem;
-    font-size: 2.4rem;
+    font-size: 2rem;
     font-family: $font-head;
     line-height: 1.5;
+    text-transform: uppercase;
   }
 }
 

@@ -1,8 +1,22 @@
 <template>
   <div id="app">
-    <router-view />
+    <transition name="fade">
+      <router-view class="child-view" />
+    </transition>
   </div>
 </template>
+
+<script>
+export default {
+  name: 'App',
+  data() {
+    return {
+      transitionName: 'slide-left',
+    };
+  },
+};
+</script>
+
 
 <style lang="scss">
 * {
@@ -22,6 +36,13 @@ body {
   font-size: 1.4rem;
   background-color: $bg-color;
   color: $text;
-  height: 100%;
+  height: 100vh;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .2s ease;
+}
+.fade-enter, .fade-leave-active {
+  opacity: 0;
 }
 </style>

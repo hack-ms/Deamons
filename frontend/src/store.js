@@ -8,10 +8,14 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     listUbs: [],
+    ubsSelected: '',
   },
   mutations: {
     setListUbs(state, list) {
       state.listUbs = list;
+    },
+    setUbsSelected(state, id) {
+      state.ubsSelected = id;
     },
   },
   actions: {
@@ -19,7 +23,7 @@ export default new Vuex.Store({
       const params = {
         busca: searchText,
       };
-      const response = await http.get('/ubs', { params });
+      const response = await http.get('/ubs/get2', { params });
       commit('setListUbs', response.data);
     },
   },

@@ -5,6 +5,7 @@
       { 'base-button--has-icon': classIcon, 'base-button--block': block },
       `base-button--${type}`
     ]"
+    @click="$emit('click')"
   >
     <span
       v-if="classIcon"
@@ -68,6 +69,10 @@ export default {
   &--block {
     display: block;
     width: 100%;
+
+    & + & {
+      margin-top: 1.6rem;
+    }
   }
 
   &--primary {
