@@ -6,6 +6,7 @@ use App\Ubs;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Storage;
 use League\Csv\Reader;
+use mysql_xdevapi\Exception;
 
 class UbsService
 {
@@ -62,10 +63,15 @@ class UbsService
      */
     public function getValuesFilters($request)
     {
+
         $requestFiltered = FiltersValidateRequest::validadeObs($request);
-        return Ubs::where('no_fantasia','like',$requestFiltered['no_fantasia'])
-            ->orWhere('co_cep',$requestFiltered['co_cep'])
-            ->orWhere('no_bairro',$requestFiltered['no_bairro'])
+        if (count($requestFiltered) === 0) {
+            throw new \Exception('Parametros inválidos');
+        }
+
+        return Ubs::where('no_fantasia','like',$requestFiltered['no_fantasia'] ?? '')
+            ->orWhere('co_cep',$requestFiltered['co_cep'] ?? '')
+            ->orWhere('no_bairro',$requestFiltered['no_bairro'] ?? '')
             ->first();
     }
 }
