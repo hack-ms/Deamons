@@ -16,7 +16,9 @@
         class-icon-button="fa fa-fw fa-arrow-right"
         placeholder="Busque uma unidade"
         style="margin-bottom: 1.6rem;"
-        :handler="search"
+        :value="searchText"
+        @click="search"
+        @input="setSearchText"
       />
       <base-button
         block
@@ -29,6 +31,8 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+
 import InputAction from '@/components/InputAction.vue';
 import BaseButton from '@/components/BaseButton.vue';
 
@@ -38,9 +42,19 @@ export default {
     InputAction,
     BaseButton,
   },
+  data() {
+    return {
+      searchText: '',
+    };
+  },
   methods: {
-    search() {
+    ...mapActions(['fetchListUbs']),
+    async search() {
+      await this.fetchListUbs(this.searchText);
       this.$router.push({ name: 'result' });
+    },
+    setSearchText(value) {
+      this.searchText = value;
     },
   },
 };
