@@ -50,8 +50,14 @@ export default {
   methods: {
     ...mapActions(['fetchListUbs']),
     async search() {
-      await this.fetchListUbs(this.searchText);
-      this.$router.push({ name: 'result' });
+      if (this.searchText) {
+        try {
+          await this.fetchListUbs(this.searchText);
+        } catch (err) {
+          console.log(err);
+        }
+        this.$router.push({ name: 'result' });
+      }
     },
     setSearchText(value) {
       this.searchText = value;
