@@ -13,7 +13,7 @@
     <div class="main-actions">
       <input-action
         class-icon="fa fa-fw fa-search"
-        class-icon-button="fa fa-fw fa-arrow-right"
+        :class-icon-button="actionIcon"
         placeholder="Busque uma unidade"
         style="margin-bottom: 1.6rem;"
         :value="searchText"
@@ -45,6 +45,9 @@ export default {
   data() {
     return {
       searchText: '',
+      loadingIcon: 'fa fa-spinner fa-spin fa-fw',
+      buttonIcon: 'fa fa-fw fa-arrow-right',
+      actionIcon: 'fa fa-fw fa-arrow-right',
     };
   },
   methods: {
@@ -52,7 +55,9 @@ export default {
     async search() {
       if (this.searchText) {
         try {
+          this.actionIcon = this.loadingIcon;
           await this.fetchListUbs(this.searchText);
+          this.actionIcon = this.buttonIcon;
         } catch (err) {
           console.log(err);
         }
