@@ -10,6 +10,7 @@ use App\Services\AvaliacaoService;
 use App\Services\CnesService;
 use App\Services\UbsService;
 use Illuminate\Http\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class UbsController extends Controller
 {
@@ -38,7 +39,7 @@ class UbsController extends Controller
                 'qtd_funcionarios' => count($funcionarios)
 
             ];
-        } catch (FalhaObterException $exception) {
+        } catch (NotFoundHttpException | FalhaObterException $exception) {
             return response()->json(['mensagem' => $exception->getMessage()], Response::HTTP_NOT_FOUND);
         } catch (\Exception $exception) {
             return response()->json(['mensagem' => $exception->getMessage()], Response::HTTP_INTERNAL_SERVER_ERROR);

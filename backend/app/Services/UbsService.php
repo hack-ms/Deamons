@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Storage;
 use League\Csv\Reader;
 use mysql_xdevapi\Exception;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class UbsService
 {
@@ -70,7 +71,7 @@ class UbsService
             ->first();
 
         if (!$ubs instanceof Ubs) {
-            throw new \Exception('UBS nao encontrada ' . $request['busca']);
+            throw new NotFoundHttpException('UBS nao encontrada ' . $request['busca']);
         }
 
         return $ubs;
