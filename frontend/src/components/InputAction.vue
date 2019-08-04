@@ -48,6 +48,7 @@ export default {
   padding: 1.6rem;
   font-size: 1.8rem;
   align-items: center;
+  color: $text;
 
   &__entry {
     border: 0;

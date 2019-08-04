@@ -1,18 +1,79 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div class="intro">
+      <img
+        class="intro__logo"
+        alt="Vue logo"
+        src="../assets/retangulo.png"
+      >
+      <h1 class="intro__title">
+        Compartilhe sua experiência sobre a saúde básica
+      </h1>
+    </div>
+    <div class="main-actions">
+      <input-action
+        class-icon="fa fa-fw fa-search"
+        class-icon-button="fa fa-fw fa-arrow-right"
+        placeholder="Busque uma unidade"
+        style="margin-bottom: 1.6rem;"
+        :handler="search"
+      />
+      <base-button
+        block
+        class-icon="fa fa-fw fa-map-marker"
+      >
+        Quero me localizar agora
+      </base-button>
+    </div>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue';
+import InputAction from '@/components/InputAction.vue';
+import BaseButton from '@/components/BaseButton.vue';
 
 export default {
-  name: 'home',
+  name: 'Home',
   components: {
-    HelloWorld,
+    InputAction,
+    BaseButton,
+  },
+  methods: {
+    search() {
+      this.$router.push({ name: 'result' });
+    },
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.home {
+  height: 100vh;
+  background: $gradient-primary;
+  color: #fff;
+}
+
+.intro {
+  text-align: center;
+  padding: 0 2.4rem;
+
+  &__logo {
+    margin: 0 auto;
+    padding: 5.6rem 0;
+    height: auto;
+    max-width: 20rem;
+    display: block;
+  }
+
+  &__title {
+    padding-bottom: 6.4rem;
+    font-size: 2.4rem;
+    font-family: $font-head;
+    line-height: 1.5;
+  }
+}
+
+.main-actions {
+  padding: 0 2.4rem;
+}
+</style>
