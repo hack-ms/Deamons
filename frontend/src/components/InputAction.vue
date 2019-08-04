@@ -5,10 +5,12 @@
       class="input-action__entry"
       type="text"
       :placeholder="placeholder"
+      :value="value"
+      @input="$emit('input', $event.target.value)"
     >
     <span
       :class="classIconButton"
-      @click="handler"
+      @click="$emit('click')"
     />
   </div>
 </template>
@@ -29,9 +31,9 @@ export default {
       type: String,
       default: '',
     },
-    handler: {
-      type: Function,
-      default: () => () => {},
+    value: {
+      type: String,
+      default: '',
     },
   },
 };
