@@ -9,14 +9,14 @@
         <span>Unidade básica de saúde</span>
       </header>
       <header-und :und="ubs" />
-      <div class="details__gestor">
+      <!-- <div class="details__gestor">
         <div class="label">
           Gestor Responsável
         </div>
         <div class="info">
           Marcelo Silva
         </div>
-      </div>
+      </div> -->
       <div class="details__more-actions">
         <div>
           <div class="label">
