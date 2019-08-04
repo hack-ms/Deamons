@@ -15,6 +15,8 @@ class Avaliacao extends Model
         'houve_superlotacao',
         'faltou_cuidado_profissional',
         'dificuldade_acesso',
-        'avaliacao_atendimento'
+        'avaliacao_atendimento',
+        'faltou_material',
+        'data_atendimento'
     ];
 }

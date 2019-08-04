@@ -22,12 +22,12 @@ class AvaliacaoPostRequest extends FormRequest
         return [
             'ubs_id'                      => ['required', Rule::exists('ubs', 'gid')],
             'observacao'                  => 'sometimes|string',
-            'tempo_atendimento'           => 'required|boolean',
+            'tempo_atendimento'           => 'required',
             'foi_atendido'                => 'required|boolean',
             'houve_superlotacao'          => 'required|boolean',
-            'faltou_cuidado_profissional' => 'required|boolean',
+            'faltou_material'             => 'required|boolean',
             'dificuldade_acesso'          => 'required|boolean',
-            'avaliacao_atendimento'       => 'required|boolean',
+            'avaliacao_atendimento'       => 'required|integer',
 
         ];
     }

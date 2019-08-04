@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AlterTableAvaliacao4 extends Migration
+class AlterTableAvaliacao5 extends Migration
 {
     /**
      * Run the migrations.
@@ -14,8 +14,8 @@ class AlterTableAvaliacao4 extends Migration
     public function up()
     {
         Schema::table('avaliacao', function (Blueprint $table) {
-        $table->boolean('faltou_material');
-    });
+            $table->dateTime('data_atendimento');
+        });
     }
 
     /**

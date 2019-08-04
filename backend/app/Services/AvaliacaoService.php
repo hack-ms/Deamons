@@ -48,7 +48,7 @@ class AvaliacaoService
             }
 
             if ($avaliacao->dificuldade_acesso) {
-                $contadores['DificuldadeAcesso']++;
+                $contadores['dificuldadeAcesso']++;
             }
 
             if ($avaliacao->faltou_material) {
