@@ -64,14 +64,15 @@ class UbsService
      */
     public function getValuesFilters($request): Ubs
     {
-        try {
-            return Ubs::where('no_fantasia', 'like', $request['busca'])
-                ->orWhere('co_cep', $request['busca'])
-                ->orWhere('no_bairro', $request['busca'])
-                ->first();
+        $ubs = Ubs::where('no_fantasia', 'like', $request['busca'])
+            ->orWhere('co_cep', $request['busca'])
+            ->orWhere('no_bairro', $request['busca'])
+            ->first();
 
-        } catch (\Exception $exception) {
-            throw new \Exception('UBS nao encontrada' . $exception->getMessage());
+        if (!$ubs instanceof Ubs) {
+            throw new \Exception('UBS nao encontrada ' . $request['busca']);
         }
+
+        return $ubs;
     }
 }

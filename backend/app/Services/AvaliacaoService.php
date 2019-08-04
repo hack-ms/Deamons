@@ -70,4 +70,9 @@ class AvaliacaoService
             'principal_frustracao' => key($contadores)
         ];
     }
+
+    public function getHomeValues(): array
+    {
+
+    }
 }
