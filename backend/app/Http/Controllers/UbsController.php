@@ -28,4 +28,9 @@ class UbsController extends Controller
             return response()->json(['mensagem' => $exception->getMessage()], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
+
+    public function filtro(Request $request)
+    {
+        return $this->ubsService->getValuesFilters($request->all());
+    }
 }
