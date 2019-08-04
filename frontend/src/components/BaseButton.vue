@@ -89,8 +89,8 @@ export default {
 
   &--outline {
     background-color: #fff;
-    border: 2px solid $primary;
-    color: $primary;
+    border: 2px solid $gray;
+    color: $text;
   }
 
   &__icon {

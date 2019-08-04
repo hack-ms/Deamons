@@ -4,7 +4,7 @@
       <img
         class="intro__logo"
         alt="Vue logo"
-        src="../assets/retangulo.png"
+        src="../assets/logo.png"
       >
       <h1 class="intro__title">
         Compartilhe sua experiência sobre a saúde básica

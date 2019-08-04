@@ -26,5 +26,10 @@ export default new Router({
       name: 'rating',
       component: () => import('./views/Rating.vue'),
     },
+    {
+      path: '/conclusion',
+      name: 'conclusion',
+      component: () => import('./views/Conclusion.vue'),
+    },
   ],
 });
