@@ -19,13 +19,6 @@ class AvaliacaoController extends Controller
         $this->cnesService = new CnesService();
     }
 
-    public function get()
-    {
-//        $funcionarios =  $this->cnesService->getProfissionaisByCodCnes(5983525);
-//
-//        dd($funcionarios);
-    }
-
     public function post(AvaliacaoPostRequest $request)
     {
         try {

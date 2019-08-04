@@ -10,6 +10,5 @@ Route::group(array('prefix' => 'avaliacao'), function()
 Route::group(array('prefix' => 'ubs'), function()
 {
     Route::get('/', 'UbsController@get');
-    Route::get('/filtro', 'UbsController@filtro');
 });
 
