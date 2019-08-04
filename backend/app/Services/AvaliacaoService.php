@@ -73,6 +73,9 @@ class AvaliacaoService
 
     public function getHomeValues(): array
     {
-
+        return [
+            'avaliacoes'   => Avaliacao::all()->count(),
+            'ubsAvaliadas' => Avaliacao::all()->groupBy('ubs_id')->count()
+        ];
     }
 }
