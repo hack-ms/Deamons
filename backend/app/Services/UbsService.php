@@ -76,4 +76,19 @@ class UbsService
 
         return $ubs;
     }
+
+    public function getValuesFiltersList($request): Collection
+    {
+        $ubs = Ubs::where('no_fantasia', 'like', $request['busca'])
+            ->orWhere('co_cep', $request['busca'])
+            ->orWhere('no_bairro', $request['busca'])
+            ->get();
+
+        if (!$ubs) {
+            throw new NotFoundHttpException('UBS nao encontrada ' . $request['busca']);
+        }
+
+        return $ubs;
+    }
+
 }
