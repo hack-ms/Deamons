@@ -40,7 +40,6 @@ class UbsController extends Controller
             ];
         } catch (FalhaObterException $exception) {
             return response()->json(['mensagem' => $exception->getMessage()], Response::HTTP_NOT_FOUND);
-
         } catch (\Exception $exception) {
             return response()->json(['mensagem' => $exception->getMessage()], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
