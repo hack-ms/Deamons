@@ -20,4 +20,17 @@ class AvaliacaoService
 
         return $avaliacao;
     }
+
+    public function getDadosAvaliacoes($ubsId): array
+    {
+        $avaliacoes = Avaliacao::where('ubs_id', $ubsId)->get();
+
+        return [
+            'qtd_avaliacoes'       => $avaliacoes->count(),
+            'media_espera'         => '',
+            'media_avaliacao'      => '',
+            'principal_frustracao' => ''
+
+        ];
+    }
 }
