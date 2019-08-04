@@ -2,12 +2,13 @@
 
 namespace App\Services;
 
+use App\Exceptions\FalhaObterException;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 
 class CnesService
 {
-    public function getProfissionaisByCodCnes($codCnes): array
+    public function getUnidadeByCodCnes($codCnes): array
     {
         $guzzleClient = new Client();
 
@@ -18,17 +19,33 @@ class CnesService
                 ]
             ]);
 
-            $unidade = json_decode($resUnidade->getBody(), true)[0];
+            $unidade = json_decode($resUnidade->getBody(), true);
 
-            $resFuncionarios = $guzzleClient->get("http://cnes.datasus.gov.br/services/estabelecimentos-profissionais/" . $unidade['id'], [
+            if (!count($unidade)) {
+                throw new FalhaObterException('Unidade nao encontrada no sistema CNES:  ' . $codCnes);
+            }
+        } catch (GuzzleException $exception) {
+            throw new \Exception('Falha ao buscar dados no CNES' . $exception->getMessage());
+        }
+
+        return current($unidade);
+    }
+
+    public function getProfissionaisByUnidadedId($idUbs): array
+    {
+        $guzzleClient = new Client();
+
+        try {
+            $resFuncionarios = $guzzleClient->get("http://cnes.datasus.gov.br/services/estabelecimentos-profissionais/" . $idUbs, [
                 'headers' => [
-                    'referer' => "http://cnes.datasus.gov.br/pages/estabelecimentos/ficha/profissionais-ativos/" . $unidade['id']
+                    'referer' => "http://cnes.datasus.gov.br/pages/estabelecimentos/ficha/profissionais-ativos/" . $idUbs
                 ]
             ]);
 
             $funcionarios = json_decode($resFuncionarios->getBody(), true);
-        } catch (\Exception | GuzzleException $exception) {
-            throw new \Exception('Falha ao buscar dados de funcionarios' . $exception->getMessage());
+
+        } catch (GuzzleException $exception) {
+            throw new \Exception('Falha ao buscar dados no CNES' . $exception->getMessage());
         }
 
         return $funcionarios;

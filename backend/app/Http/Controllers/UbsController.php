@@ -4,26 +4,43 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use App\Services\UbsService;
-use App\Ubs;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Http\Request;
 use App\Exceptions\FalhaObterException;
+use App\Http\Requests\UbsGetRequest;
+use App\Services\AvaliacaoService;
+use App\Services\CnesService;
+use App\Services\UbsService;
 use Illuminate\Http\Response;
 
 class UbsController extends Controller
 {
-    private $ubsService = null;
+    private $ubsService;
+    private $cnesService;
+    private $avaliacaoService;
 
     public function __construct()
     {
-        $this->ubsService = new UbsService();
+        $this->ubsService       = new UbsService();
+        $this->cnesService      = new CnesService();
+        $this->avaliacaoService = new AvaliacaoService();
     }
 
-    public function get(Request $request): ?Collection
+    public function get(UbsGetRequest $request)
     {
         try {
-            return $this->ubsService->getValuesFilters($request->all());
+            $ubs            = $this->ubsService->getValuesFilters($request->all());
+            $unidade        = $this->cnesService->getUnidadeByCodCnes($ubs->co_cnes);
+            $funcionarios   = $this->cnesService->getProfissionaisByUnidadedId($unidade['id']);
+            $dadosAvaliacao = $this->avaliacaoService->getDadosAvaliacoes($ubs->gid);
+
+            return [
+                'unidade'          => $ubs,
+                'avaliacao'        => $dadosAvaliacao,
+                'qtd_funcionarios' => count($funcionarios)
+
+            ];
+        } catch (FalhaObterException $exception) {
+            return response()->json(['mensagem' => $exception->getMessage()], Response::HTTP_NOT_FOUND);
+
         } catch (\Exception $exception) {
             return response()->json(['mensagem' => $exception->getMessage()], Response::HTTP_INTERNAL_SERVER_ERROR);
         }

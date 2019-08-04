@@ -62,15 +62,16 @@ class UbsService
      *
      * @throws \Exception
      */
-    public function getValuesFilters($request)
+    public function getValuesFilters($request): Ubs
     {
-        $requestFiltered = FiltersValidateRequest::validadeObs($request);
+        try {
+            return Ubs::where('no_fantasia', 'like', $request['busca'])
+                ->orWhere('co_cep', $request['busca'])
+                ->orWhere('no_bairro', $request['busca'])
+                ->first();
 
-        if (count($requestFiltered) === 0) {
-            throw new \Exception('Parametros inválidos');
+        } catch (\Exception $exception) {
+            throw new \Exception('UBS nao encontrada' . $exception->getMessage());
         }
-
-        return Ubs::where('no_fantasia', 'like', $requestFiltered['no_fantasia'] ?? '')->orWhere('co_cep',
-            $requestFiltered['co_cep'] ?? '')->orWhere('no_bairro', $requestFiltered['no_bairro'] ?? '')->first();
     }
 }
