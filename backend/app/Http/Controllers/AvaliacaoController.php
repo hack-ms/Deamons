@@ -5,20 +5,25 @@ namespace App\Http\Controllers;
 use App\Exceptions\FalhaInserirException;
 use App\Http\Requests\AvaliacaoPostRequest;
 use App\Services\AvaliacaoService;
+use App\Services\CnesService;
 use Illuminate\Http\Response;
 
 class AvaliacaoController extends Controller
 {
     private $avaliacaoService;
+    private $cnesService;
 
     public function __construct()
     {
         $this->avaliacaoService = new AvaliacaoService();
+        $this->cnesService = new CnesService();
     }
 
     public function get()
     {
-        return [];
+//        $funcionarios =  $this->cnesService->getProfissionaisByCodCnes(5983525);
+//
+//        dd($funcionarios);
     }
 
     public function post(AvaliacaoPostRequest $request)
